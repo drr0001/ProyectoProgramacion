@@ -11,11 +11,10 @@ package model;
  */
 public class Revision {
     private int codigo;
-    private String matricula;
     private String fecha;
     private boolean filtro;
     private boolean aceite;
     private boolean frenos;
-    
+
     
 }
