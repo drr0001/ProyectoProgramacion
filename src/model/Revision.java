@@ -31,8 +31,5 @@ public class Revision {
         this.filtro = filtro;
         this.aceite = aceite;
         this.frenos = frenos;
-        /**a
-         * 
-         */
     }
 }
