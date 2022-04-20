@@ -23,8 +23,9 @@ public class Revision {
         this.filtro = false;
         this.aceite = false;
         this.frenos = false;
-            
+
     }
+
     public Revision(int codigo, String fecha, boolean filtro, boolean aceite, boolean frenos) {
         this.codigo = codigo;
         this.fecha = fecha;
@@ -32,4 +33,46 @@ public class Revision {
         this.aceite = aceite;
         this.frenos = frenos;
     }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public boolean isFiltro() {
+        return filtro;
+    }
+
+    public boolean isAceite() {
+        return aceite;
+    }
+
+    public boolean isFrenos() {
+        return frenos;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setFiltro(boolean filtro) {
+        this.filtro = filtro;
+    }
+
+    public void setAceite(boolean aceite) {
+        this.aceite = aceite;
+    }
+
+    public void setFrenos(boolean frenos) {
+        this.frenos = frenos;
+    }
+    
+
 }
