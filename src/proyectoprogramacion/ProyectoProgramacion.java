@@ -5,6 +5,10 @@
  */
 package proyectoprogramacion;
 
+import controller.ConexionMySql;
+import controller.Controlador;
+import java.sql.SQLException;
+
 /**
  *
  * @author Dani
@@ -14,8 +18,9 @@ public class ProyectoProgramacion {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        int a=1;
+    public static void main(String[] args) throws SQLException {
+        Controlador cnn = new Controlador();
+        cnn.conectar();
     }
 
 }

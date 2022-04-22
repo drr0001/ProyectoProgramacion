@@ -8,6 +8,7 @@ package view;
 
 
 import controller.ConexionMySql;
+import controller.Controlador;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class NewJFrameP extends javax.swing.JFrame {
 
-    ConexionMySql conexionsql;
+    Controlador conexionsql= new Controlador();
 
     /**
      * Creates new form NewJFrameP
