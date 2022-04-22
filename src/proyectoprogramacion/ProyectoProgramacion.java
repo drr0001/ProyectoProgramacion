@@ -5,6 +5,9 @@
  */
 package proyectoprogramacion;
 
+import model.Cliente;
+import model.Coche;
+
 /**
  *
  * @author Dani
@@ -15,7 +18,7 @@ public class ProyectoProgramacion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+      
     }
     
 }

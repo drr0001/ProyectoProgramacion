@@ -25,6 +25,7 @@ public class Cliente {
         this.direccion = direccion;
         this.ciudad = ciudad;
         this.telefono = telefono;
+        
     }
 
     public String getDni() {
@@ -47,6 +48,11 @@ public class Cliente {
         return telefono;
     }
 
+    public ArrayList<Coche> getCoches() {
+        return coches;
+    }
+    
+
     public void setDni(String dni) {
         this.dni = dni;
     }
@@ -66,11 +72,15 @@ public class Cliente {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-
+    
     @Override
     public String toString() {
         return "Cliente{" + "dni=" + dni + ", nombre=" + nombre + ", direccion=" + direccion + ", ciudad=" + ciudad + ", telefono=" + telefono + '}';
     }
     
+    public void compraCoche(Coche coche){
+        this.coches.add(coche);
+    }
+
     
 }

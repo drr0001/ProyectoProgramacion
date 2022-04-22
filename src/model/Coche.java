@@ -85,9 +85,7 @@ public class Coche {
         this.cliente = cliente;
     }
 
-    public void pasarRevisiones(Revision revision) {
-        this.revisiones.add(revision);
-    }
+    
     
     
 
@@ -96,5 +94,7 @@ public class Coche {
         return "Coche{" + "matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", precio=" + precio + '}';
     }
    
-    
+    public void pasarRevisiones(Revision revision) {
+        this.revisiones.add(revision);
+    }
 }
