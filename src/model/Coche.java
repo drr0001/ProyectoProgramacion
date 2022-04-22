@@ -17,6 +17,7 @@ public class Coche {
     private String modelo;
     private String color;
     private int precio;
+    private Cliente cliente;
     private ArrayList <Revision> revisiones;
 
     public Coche(String matricula, String marca, String modelo, String color, int precio) {
@@ -25,7 +26,11 @@ public class Coche {
         this.modelo = modelo;
         this.color = color;
         this.precio = precio;
+        
     }
+
+    
+    
 
     public String getMatricula() {
         return matricula;
@@ -47,6 +52,15 @@ public class Coche {
         return precio;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public ArrayList<Revision> getRevisiones() {
+        return revisiones;
+    }
+    
+
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
@@ -67,10 +81,20 @@ public class Coche {
         this.precio = precio;
     }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void pasarRevisiones(Revision revision) {
+        this.revisiones.add(revision);
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Coche{" + "matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", precio=" + precio + '}';
     }
-    
+   
     
 }
