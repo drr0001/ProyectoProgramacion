@@ -16,22 +16,18 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 /**
  *
  * @author MEDAC-INVITADO
  */
-public class Controlador {
+public class ControladorCoche {
 
+public void insertCoche(String matricula,String marca, String modelo, String color, int precio  ){
 
+    return Coche; 
 
-    ConexionMySql cnn = new ConexionMySql();//inicializar en el metodo conectar
-     public void conectar() throws SQLException{
-        cnn.conectar();
-    }
-    public void createCliente(String dni, String nombre, String direccion, String ciudad, int telefono) throws SQLException{
-        String consulta ="INSERT INTO cliente (dni, nombre, direccion, ciudad, telefono) VALUES ("+dni+","+nombre+","+direccion+","+ciudad+","+telefono+")";
-        cnn.ejecutarInsertDeleteUpdate(consulta);
-    }
+}
 }
