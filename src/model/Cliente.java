@@ -71,6 +71,9 @@ public class Cliente {
     public String toString() {
         return "Cliente{" + "dni=" + dni + ", nombre=" + nombre + ", direccion=" + direccion + ", ciudad=" + ciudad + ", telefono=" + telefono + '}';
     }
-    
-    
+
+    public void compraCoche(Coche coche) {
+        this.coches.add(coche);
+    }
+
 }

@@ -23,4 +23,13 @@ import java.util.TimeZone;
 public class Controlador {
 
 
+
+    ConexionMySql cnn = new ConexionMySql();//inicializar en el metodo conectar
+     public void conectar() throws SQLException{
+        cnn.conectar();
+    }
+    public void createCliente(String dni, String nombre, String direccion, String ciudad, int telefono) throws SQLException{
+        String consulta ="INSERT INTO cliente (dni, nombre, direccion, ciudad, telefono) VALUES ("+dni+","+nombre+","+direccion+","+ciudad+","+telefono+")";
+        cnn.ejecutarInsertDeleteUpdate(consulta);
+    }
 }
