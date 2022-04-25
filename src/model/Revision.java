@@ -13,6 +13,7 @@ public class Revision {
 
     private int codigo;
     private String fecha;
+    private String matricula;
     private boolean filtro;
     private boolean aceite;
     private boolean frenos;
@@ -26,9 +27,10 @@ public class Revision {
 
     }
 
-    public Revision(int codigo, String fecha, boolean filtro, boolean aceite, boolean frenos) {
+    public Revision(int codigo, String fecha,String matricula, boolean filtro, boolean aceite, boolean frenos) {
         this.codigo = codigo;
         this.fecha = fecha;
+        this.matricula = matricula;
         this.filtro = filtro;
         this.aceite = aceite;
         this.frenos = frenos;
@@ -41,6 +43,11 @@ public class Revision {
     public String getFecha() {
         return fecha;
     }
+
+    public String getMatricula() {
+        return matricula;
+    }
+    
 
     public boolean isFiltro() {
         return filtro;
@@ -61,6 +68,11 @@ public class Revision {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+    
 
     public void setFiltro(boolean filtro) {
         this.filtro = filtro;
