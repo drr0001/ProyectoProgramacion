@@ -30,7 +30,7 @@ public class ControladorCoche {
         ConexionMySql coche = new ConexionMySql();
 
         coche.conectar();
-        consulta = "INSERT INTO coche(Matricula,Marca,Modelo,Color, Precio, Dni) VALUES ('+Matricula +Marca +Color +Precio +Dni'); ";
+        consulta = "INSERT INTO coche(Matricula,Marca,Modelo,Color, Precio, Dni) VALUES ("+Matricula +Marca +Color +Precio +Dni+"); ";
 
         try {
             coche.ejecutarInsertDeleteUpdate(consulta);
