@@ -234,6 +234,7 @@ public class JFrame2 extends javax.swing.JFrame {
                 new JFrame2().setVisible(true);
             }
         });
+        System.out.println("JFRAME para añadir inicialiado.");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
