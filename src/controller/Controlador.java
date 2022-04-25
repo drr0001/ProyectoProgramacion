@@ -33,7 +33,7 @@ public class Controlador {
     }
     public void desconectar() throws SQLException{
         cnn.desconectar();
-        System.out.println("desconectado");
+        System.out.println("desconectadoo");
     } 
     
 }
