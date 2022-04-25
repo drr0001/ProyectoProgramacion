@@ -9,6 +9,7 @@ package model;
  */
 
 import controller.ConexionMySql;
+import model.Coche;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -42,28 +43,26 @@ public class TableModel_ITV extends AbstractTableModel {
        
         fireTableDataChanged();
     }
-    public void insertar(String titulo, int año, int puntuacion, String sinopsis) 
+    public void insertar(String matricula, String marca, String modelo, String color, int precio, Cliente cliente) 
 throws SQLException {
-        Pelicula pelicula=new Pelicula(titulo,año,puntuacion,sinopsis);
-        list.add(pelicula);
+        Coche coche=new Coche(matricula,marca,modelo,color,precio);
+        list.add(coche);
         cargarPeliculas();
     }
-    public void eliminar(Pelicula pelicula){
+    public void eliminar(Coche coche){
         
         try {
-            conn.eliminar(pelicula);
-            list.remove(pelicula);
-            cargarPeliculas();
+            conn.eliminar(coche);
+            list.remove(coche);
+            cargarCoches();
         } catch (SQLException ex) {
             Logger.getLogger(TableModel_ITV.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public int actualizar(String tituloOriginal, String titulo, int año, int 
-    puntuacion, String sinopsis) throws SQLException {
+    public int actualizar(String matriculaOriginal, String matricula, String marca, String modelo, String color, int precio) throws SQLException {
         int nfilas =0;
-        conn.actualizar(tituloOriginal, titulo, año, puntuacion, sinopsis);
-        
-        cargarPeliculas();
+        conn.actualizar(matriculaOriginal, matricula, marca, modelo, color, precio);
+        cargarCoches();
         return nfilas;
     }
     @Override
@@ -82,13 +81,15 @@ throws SQLException {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return list.get(rowIndex).getTitulo();
+                return list.get(rowIndex).getMatricula();
             case 1:
-                return list.get(rowIndex).getAño();
+                return list.get(rowIndex).getMarca();
             case 2:
-                return list.get(rowIndex).getPuntuacion();
+                return list.get(rowIndex).getModelo();
             case 3:
-                return list.get(rowIndex).getSinopsis();
+                return list.get(rowIndex).getColor();
+            case 4:
+                return list.get(rowIndex).getPrecio();
         }
         return null;
     }
