@@ -5,8 +5,6 @@ package controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -19,15 +17,59 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
+import view.JFrame2;
+
 /**
  *
  * @author MEDAC-INVITADO
  */
 public class ControladorCoche {
 
-public void insertCoche(String matricula,String marca, String modelo, String color, int precio  ){
+    public void insertCoche(String Matricula, String Marca, String Modelo, String Color, int Precio, String Dni) throws SQLException {
+        String consulta = "";
+        ConexionMySql coche = new ConexionMySql();
 
-    return Coche; 
+        coche.conectar();
+        consulta = "INSERT INTO coche(Matricula,Marca,Modelo,Color, Precio, Dni) VALUES ("+Matricula +Marca +Color +Precio +Dni"); ";
 
-}
+        try {
+            coche.ejecutarInsertDeleteUpdate(consulta);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame2.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            try {
+                coche.desconectar();
+            } catch (SQLException ex) {
+                System.out.println("Error" + ex.toString());
+            }
+
+        }
+    }
+
+    public void deleteCoche() throws SQLException {
+        String consulta = "";
+        ConexionMySql coche = new ConexionMySql();
+
+        coche.conectar();
+        consulta = "DELETE FROM `coche` WHERE matricula = ;";
+
+        try {
+            coche.ejecutarInsertDeleteUpdate(consulta);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame2.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            try {
+                coche.desconectar();
+            } catch (SQLException ex) {
+                System.out.println("Error" + ex.toString());
+            }
+
+        }
+
+    }
+
 }

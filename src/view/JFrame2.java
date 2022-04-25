@@ -170,7 +170,7 @@ public class JFrame2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void matriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaActionPerformed
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_matriculaActionPerformed
 
     private void modeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeloActionPerformed
