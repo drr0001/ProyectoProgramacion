@@ -17,12 +17,12 @@ import view.JFrame2;
  * @author MEDAC-INVITADO
  */
 public class ControladorCliente {
-      public void insertCliente() throws SQLException {
+      public void insertCliente(String DNI,String Nombre, String Ciudad, String Direccion ,int TLF) throws SQLException {
         String consulta = "";
         ConexionMySql cliente = new ConexionMySql();
 
         cliente.conectar();
-        consulta = "INSERT INTO cliente(Matricula,Marca,Modelo,Color) VALUES (); ";
+        consulta = "INSERT INTO cliente(DNI,Nombre,Ciudad,Direccion,TLF) VALUES ("+DNI +Nombre +Ciudad + Direccion +TLF +"); ";
 
         try {
             cliente.ejecutarInsertDeleteUpdate(consulta);
@@ -40,12 +40,12 @@ public class ControladorCliente {
         }
     }
 
-    public void deleteCoche() throws SQLException {
+    public void deleteCliente(String DNI) throws SQLException {
         String consulta = "";
         ConexionMySql coche = new ConexionMySql();
 
         coche.conectar();
-        consulta = "DELETE FROM `city` WHERE CountryCode = ;";
+        consulta = "DELETE FROM `cliente` WHERE DNI =" +DNI +" ;";
 
         try {
             coche.ejecutarInsertDeleteUpdate(consulta);
