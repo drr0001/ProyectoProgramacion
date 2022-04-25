@@ -41,7 +41,7 @@ public class ControladorRevision {
         }
     }
 
-    public void deleteCoche(String DNI) throws SQLException {
+    public void deleteCoche(String Codigo) throws SQLException {
         String consulta = "";
         ConexionMySql coche = new ConexionMySql();
 
