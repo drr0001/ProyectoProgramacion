@@ -36,4 +36,11 @@ public class Controlador {
         System.out.println("desconectadoo");
     } 
     
+        public  void ejecutarInsertDeleteUpdate(String consulta)throws SQLException{
+        cnn.ejecutarInsertDeleteUpdate(consulta);
+    }
+        public void ejecutarSelect(String consulta) throws SQLException {
+     
+        cnn.ejecutarSelect(consulta);
+    }
 }

@@ -42,7 +42,8 @@ public class ControladorCliente {
 
     public void deleteCliente(String DNI) throws SQLException {
         String consulta = "";
-        ConexionMySql coche = new ConexionMySql();
+        // ConexionMySql coche = new ConexionMySql();
+        Controlador coche = new Controlador();
 
         coche.conectar();
         consulta = "DELETE FROM `cliente` WHERE DNI =" +DNI +" ;";
