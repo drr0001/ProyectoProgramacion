@@ -17,16 +17,21 @@ public class Coche {
     private String modelo;
     private String color;
     private int precio;
-    private Cliente cliente;
+    private String dni;
     private ArrayList <Revision> revisiones;
     
-    public Coche(String matricula, String marca, String modelo, String color, int precio) {
+    public Coche(String matricula, String marca, String modelo, String color, int precio,String dni) {
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
         this.precio = precio;
+        this.dni = dni;
     }
+
+    public Coche() {
+    }
+    
 
     public String getMatricula() {
         return matricula;

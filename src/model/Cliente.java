@@ -46,6 +46,9 @@ public class Cliente {
     public int getTelefono() {
         return telefono;
     }
+    public ArrayList<Coche> getCoche(){
+        return coches;
+    }
 
     public void setDni(String dni) {
         this.dni = dni;
@@ -66,6 +69,7 @@ public class Cliente {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
+    
 
     @Override
     public String toString() {

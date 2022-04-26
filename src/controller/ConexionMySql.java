@@ -19,7 +19,7 @@ import java.util.TimeZone;
  */
 public class ConexionMySql {
 
-    final String BD = "Ejer4";
+    final String BD = "itv";
     final String USUARIO = "root";
     final String PASS = "";
     final String HOST = "localhost";

@@ -9,9 +9,11 @@ package view;
 
 import controller.ConexionMySql;
 import controller.Controlador;
+import controller.ControladorCoche;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.TableModel_Coche;
 
 /**
  *
@@ -20,6 +22,7 @@ import java.util.logging.Logger;
 public class NewJFrameP extends javax.swing.JFrame {
 
     Controlador conexionsql= new Controlador();
+    
 
     /**
      * Creates new form NewJFrameP

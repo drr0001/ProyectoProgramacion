@@ -10,6 +10,7 @@ package model;
 
 import controller.ConexionMySql;
 import controller.Controlador;
+import controller.ControladorCoche;
 import model.Coche;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,22 +22,22 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author MEDAC
  */
-public class TableModel_ITV extends AbstractTableModel {
-    private static final String[] columnNames = {"Matricula", "Marca", "Modelo", 
-    "Color", "Precio"};
+public class TableModel_Coche extends AbstractTableModel {
+    private static final String[] columnNames = {"matricula", "marca", "modelo", 
+    "color", "precio","Dni"};
     private final LinkedList<Coche> list;
-    private Controlador conn;
+    private ControladorCoche conn;
     
-    public TableModel_ITV(Controlador conexion) {
+    public TableModel_Coche(ControladorCoche conexion) {
         list = new LinkedList<>();
         conn = conexion;
     }
     public Coche getValueAt(int rowIndex) {
         return list.get(rowIndex);
     }
-    public void cargarPeliculas() throws SQLException {
+    public void cargarCoches() throws SQLException {
      
-        ArrayList<Coche> coches = conn.getCoche();
+        ArrayList<Coche> coches = conn.selectCoche();
         System.out.println(coches.size());
         
         list.clear();
@@ -44,25 +45,26 @@ public class TableModel_ITV extends AbstractTableModel {
        
         fireTableDataChanged();
     }
-    public void insertar(String matricula, String marca, String modelo, String color, int precio, Cliente cliente) 
+    public void insertar(String matricula, String marca, String modelo, String color, int precio) 
 throws SQLException {
-        Coche coche=new Coche(matricula,marca,modelo,color,precio);
+        Coche coche=new Coche(matricula,marca,modelo,color,precio,null);
+        conn.insertCoche(matricula, marca, modelo, color, precio, null);
         list.add(coche);
-        cargarPeliculas();
+        cargarCoches();
     }
-    public void eliminar(Coche coche){
-        
+    public void eliminar(String matricula, String marca, String modelo, String color, int precio){
+        Coche coche=new Coche(matricula,marca,modelo,color,precio,null);
         try {
-            conn.eliminar(coche);
+            conn.deleteCoche(matricula);
             list.remove(coche);
             cargarCoches();
         } catch (SQLException ex) {
-            Logger.getLogger(TableModel_ITV.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TableModel_Coche.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public int actualizar(String matriculaOriginal, String matricula, String marca, String modelo, String color, int precio) throws SQLException {
+    public int actualizar(String matricula, String marca, String modelo, String color, int precio) throws SQLException {
         int nfilas =0;
-        conn.actualizar(matriculaOriginal, matricula, marca, modelo, color, precio);
+        conn.updateCoche(matricula, marca, modelo, color, precio);
         cargarCoches();
         return nfilas;
     }

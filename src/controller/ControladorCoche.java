@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
+import model.Coche;
 import view.JFrame2;
 
 /**
@@ -27,10 +28,10 @@ public class ControladorCoche {
 
     public void insertCoche(String Matricula, String Marca, String Modelo, String Color, int Precio, String Dni) throws SQLException {
         String consulta = "";
-        ConexionMySql coche = new ConexionMySql();
+        Controlador coche = new Controlador();
 
         coche.conectar();
-        consulta = "INSERT INTO coche(Matricula,Marca,Modelo,Color, Precio, Dni) VALUES ("+Matricula +Marca +Color +Precio +Dni+"); ";
+        consulta = "INSERT INTO coche(Matricula,Marca,Modelo,Color, Precio, Dni) VALUES ('"+Matricula+"','"+Marca+"','"+Modelo+"','"+Color+"',"+Precio+",'"+Dni+"'); ";
 
         try {
             coche.ejecutarInsertDeleteUpdate(consulta);
@@ -48,12 +49,12 @@ public class ControladorCoche {
         }
     }
 
-    public void deleteCoche() throws SQLException {
+    public void deleteCoche(String matricula) throws SQLException {
         String consulta = "";
-        ConexionMySql coche = new ConexionMySql();
+        Controlador coche = new Controlador();
 
         coche.conectar();
-        consulta = "DELETE FROM `coche` WHERE matricula = ;";
+        consulta = "DELETE FROM `coche` WHERE matricula = "+matricula;
 
         try {
             coche.ejecutarInsertDeleteUpdate(consulta);
@@ -71,5 +72,62 @@ public class ControladorCoche {
         }
 
     }
+    public ArrayList <Coche> selectCoche() throws SQLException{
+        String consulta = "";
+        Controlador coche = new Controlador();
+        
+        coche.conectar();
+        consulta = "SELECT * FROM `coche`;";
+        ArrayList<Coche> coches = new ArrayList<>();
+        try {
+           
+            coches = coche.ejecutarSelect(consulta);
+            ResultSet rs = (ResultSet) coche.ejecutarSelect(consulta);
+        //ArrayList <Coche> coches = new ArrayList<>();
+            while(rs.next()){
+                Coche co = new Coche();
+                co.setMatricula(rs.getString("Matricula"));
+                co.setMarca(rs.getString("Marca"));
+                co.setModelo(rs.getString("Modelo"));
+                co.setColor(rs.getString("Color"));
+                co.setPrecio(rs.getInt("Precio"));
+                coches.add(co);
+            }
+            
 
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame2.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            try {
+                coche.desconectar();
+            } catch (SQLException ex) {
+                System.out.println("Error" + ex.toString());
+            }
+
+        }
+        return coches;
+    }
+    public void updateCoche(String matricula, String marca, String modelo , String color, int precio) throws SQLException {
+        String consulta = "";
+        Controlador coche = new Controlador();
+
+        coche.conectar();
+        consulta = "UPDATE coche SET marca = "+marca+",modelo = "+modelo+",color = "+color+",precio = "+precio+" WHERE = "+matricula+";";
+
+        try {
+            coche.ejecutarInsertDeleteUpdate(consulta);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame2.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            try {
+                coche.desconectar();
+            } catch (SQLException ex) {
+                System.out.println("Error" + ex.toString());
+            }
+
+        }
+    }
 }
