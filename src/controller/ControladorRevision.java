@@ -1,10 +1,12 @@
 package controller;
 
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Coche;
 import model.Revision;
 import view.JFrame2;
 
@@ -20,7 +22,7 @@ import view.JFrame2;
  * @author MEDAC-INVITADO
  */
 public class ControladorRevision {
-     public void insertCliente(String Codigo,Boolean Flitro, Boolean Aceite, Boolean Frenos ,Date Fecha, String Matricula) throws SQLException {
+     public void insertRevision(String Codigo,Boolean Flitro, Boolean Aceite, Boolean Frenos ,Date Fecha, String Matricula) throws SQLException {
         String consulta = "";
         ConexionMySql cliente = new ConexionMySql();
 
@@ -43,7 +45,7 @@ public class ControladorRevision {
         }
     }
 
-    public void deleteCoche(String Codigo) throws SQLException {
+    public void deleteRevision(String Codigo) throws SQLException {
         String consulta = "";
         ConexionMySql coche = new ConexionMySql();
 
@@ -66,16 +68,40 @@ public class ControladorRevision {
         }
 
     }  
+    public ArrayList <Coche> selectRevision() throws SQLException{
+        String consulta = "";
+        Controlador revision = new Controlador();
+        
+        revision.conectar();
+        consulta = "SELECT * FROM `coche`;";
+        ArrayList<Revision> revisiones = new ArrayList<>();
+        try {
+           
+            revisiones = revision.ejecutarSelect(consulta);
+            ResultSet rs = (ResultSet) revision.ejecutarSelect(consulta);
+        //ArrayList <Coche> coches = new ArrayList<>();
+            while(rs.next()){
+                Revision co = new Revision();
+                co.setMatricula(rs.getString("Matricula"));
+                co.setMarca(rs.getString("Marca"));
+                co.setModelo(rs.getString("Modelo"));
+                co.setColor(rs.getString("Color"));
+                co.setPrecio(rs.getInt("Precio"));
+                revisiones.add(co);
+            }
+            
 
-    public void borrarRevision(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        } catch (SQLException ex) {
+            Logger.getLogger(JFrame2.class.getName()).log(Level.SEVERE, null, ex);
 
-    public void insertarRevision(Revision revision) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        } finally {
+            try {
+                coche.desconectar();
+            } catch (SQLException ex) {
+                System.out.println("Error" + ex.toString());
+            }
 
-    public ArrayList<Revision> actualizarRevision() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+        return coches;
     }
 }
