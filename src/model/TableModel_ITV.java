@@ -1,97 +1,87 @@
 package model;
 
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-import controller.ConexionMySql;
-import controller.Controlador;
-import model.Coche;
+import controller.ControladorRevision;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
-/**
- *
- * @author MEDAC
- */
+import model.Revision;
+
+/*Create a Java TableModel class with name TableModel_ITV without comments*/
+
 public class TableModel_ITV extends AbstractTableModel {
-    private static final String[] columnNames = {"Matricula", "Marca", "Modelo", 
-    "Color", "Precio"};
-    private final LinkedList<Coche> list;
-    private Controlador conn;
+    private static final String[] columnNames = {"codigo", "fecha", "matricula", 
+    "filtro", "aceite","frenos"};
+    private final LinkedList<Revision> list;
+    private ControladorRevision conn;
     
-    public TableModel_ITV(Controlador conexion) {
+    public TableModel_ITV(ControladorRevision conexion) {
         list = new LinkedList<>();
         conn = conexion;
     }
-    public Coche getValueAt(int rowIndex) {
+    public Revision getValueAt(int rowIndex) {
         return list.get(rowIndex);
     }
-    public void cargarPeliculas() throws SQLException {
+    public void cargarRevisiones() throws SQLException {
      
-        ArrayList<Coche> coches = conn.getCoche();
-        System.out.println(coches.size());
+        ArrayList<Revision> revisiones = conn.actualizarRevision();
+        System.out.println(revisiones.size());
         
         list.clear();
-        list.addAll(coches);
+        list.addAll(revisiones);
        
         fireTableDataChanged();
     }
-    public void insertar(String matricula, String marca, String modelo, String color, int precio, Cliente cliente) 
-throws SQLException {
-        Coche coche=new Coche(matricula,marca,modelo,color,precio);
-        list.add(coche);
-        cargarPeliculas();
+    public void insertarRevision(Revision revision) throws SQLException {
+        conn.insertarRevision(revision);
+        cargarRevisiones();
     }
-    public void eliminar(Coche coche){
-        
-        try {
-            conn.eliminar(coche);
-            list.remove(coche);
-            cargarCoches();
-        } catch (SQLException ex) {
-            Logger.getLogger(TableModel_ITV.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void borrarRevision(int codigo) throws SQLException {
+        conn.borrarRevision(codigo);
+        cargarRevisiones();
     }
-    public int actualizar(String matriculaOriginal, String matricula, String marca, String modelo, String color, int precio) throws SQLException {
-        int nfilas =0;
-        conn.actualizar(matriculaOriginal, matricula, marca, modelo, color, precio);
-        cargarCoches();
-        return nfilas;
-    }
-    @Override
-    public int getColumnCount() {
-        return columnNames.length;
-    }
-    @Override
-    public String getColumnName(int column) {
-        return columnNames[column];
-    }
+
     @Override
     public int getRowCount() {
         return list.size();
     }
+
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        switch (columnIndex) {
-            case 0:
-                return list.get(rowIndex).getMatricula();
-            case 1:
-                return list.get(rowIndex).getMarca();
-            case 2:
-                return list.get(rowIndex).getModelo();
-            case 3:
-                return list.get(rowIndex).getColor();
-            case 4:
-                return list.get(rowIndex).getPrecio();
-        }
-        return null;
+    public int getColumnCount() {
+        return columnNames.length;
     }
+
+     @Override  //Devuelve el nombre de la columna en función del índice que se pasa como parámetro. 
+     //Este método es necesario para pintar los nombres de las columnas en la tabla. 
+
+     public String getColumnName(int columnIndex) { 
+
+         return columnNames[columnIndex]; 
+
+     } 
+
+      @Override //Devuelve el valor que hay en una celda concreta, en función de los índices que se pasan como parámetros. 
+
+      public Object getValueAt(int rowIndex, int columnIndex) { 
+
+          switch (columnIndex) { 
+
+              case 0: return list.get(rowIndex).getCodigo();  
+
+              case 1: return list.get(rowIndex).getFecha();
+
+              case 2: return list.get(rowIndex).getMatricula();  
+
+              case 3: return list.get(rowIndex).getFiltro();
+
+              case 4: return list.get(rowIndex).getAceite();
+
+              case 5: return list.get(rowIndex).getFrenos();
+
+              default: return null; 
+
+          } 
+
+      } 
 }

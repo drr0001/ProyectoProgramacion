@@ -2,8 +2,10 @@ package controller;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Revision;
 import view.JFrame2;
 
 /*
@@ -64,4 +66,16 @@ public class ControladorRevision {
         }
 
     }  
+
+    public void borrarRevision(int codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void insertarRevision(Revision revision) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ArrayList<Revision> actualizarRevision() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
