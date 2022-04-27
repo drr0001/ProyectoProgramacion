@@ -39,7 +39,7 @@ public class j1 extends javax.swing.JFrame {
      * @param consulta
      * @param jTable2 
      */
-    public void mostrar(String consulta, JTable jTable2) {
+    public void mostrarCoches(String consulta, JTable jTable2) {
         try {
 
             Statement st;
@@ -73,6 +73,39 @@ public class j1 extends javax.swing.JFrame {
         }
 
     }
+      public void mostrarRevisiones(String consulta, JTable jTable1) {
+        try {
+
+            Statement st;
+            Connection connection = con.getConexion();
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Codigo");
+            model.addColumn("Matricula");
+            model.addColumn("Filtro");
+            model.addColumn("Aceite");
+            model.addColumn("Frenos");
+          
+            jTable1.setModel(model);
+
+            String[] Revisiones = new String[5];
+            st = connection.createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+            while (rs.next()) {
+                Revisiones[0] = rs.getString(1);
+                Revisiones[1] = rs.getString(2);
+                Revisiones[2] = rs.getString(3);
+                Revisiones[3] = rs.getString(4);
+                Revisiones[4] = rs.getString(5);
+                
+
+                model.addRow( Revisiones);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(j1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -255,23 +288,18 @@ public class j1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(158, 158, 158)
-                                .addComponent(jLabel9)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -282,14 +310,15 @@ public class j1 extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(jLabel9))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                        .addGap(21, 21, 21)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton2)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
@@ -348,6 +377,11 @@ public class j1 extends javax.swing.JFrame {
                 jTextField6.setText("" + nombre.getString("cliente.dni"));
 
             }
+            String consulta1 = "SELECT * from revision where matricula='" + matricula + "'";
+            mostrarRevisiones(consulta1,jTable2);
+            
+            
+            
 
         } catch (SQLException ex) {
             Logger.getLogger(j1.class.getName()).log(Level.SEVERE, null, ex);
@@ -372,7 +406,7 @@ public class j1 extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         String consulta = "SELECT * FROM coche";
-        mostrar(consulta, jTable2);
+        mostrarCoches(consulta, jTable2);
     }//GEN-LAST:event_jButton3ActionPerformed
     /**
      * 
@@ -389,7 +423,7 @@ public class j1 extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         String dni = jTextField7.getText();
         String consulta = "SELECT * FROM coche WHERE dni='" + dni + "'";
-        mostrar(consulta, jTable2);
+        mostrarCoches(consulta, jTable2);
     }//GEN-LAST:event_jButton6ActionPerformed
     /**
      *
