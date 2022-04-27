@@ -49,15 +49,15 @@ public class Revision {
     }
     
 
-    public boolean getFiltro() {
+    public boolean isFiltro() {
         return filtro;
     }
 
-    public boolean getAceite() {
+    public boolean isAceite() {
         return aceite;
     }
 
-    public boolean getFrenos() {
+    public boolean isFrenos() {
         return frenos;
     }
 
