@@ -17,8 +17,17 @@ public class Coche {
     private String modelo;
     private String color;
     private int precio;
-    private Cliente cliente;
+    private String dni;
     private ArrayList <Revision> revisiones;
+    
+    public Coche(String matricula, String marca, String modelo, String color, int precio,String dni) {
+        this.matricula = matricula;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.color = color;
+        this.precio = precio;
+        this.dni = dni;
+    }
     
     public Coche(String matricula, String marca, String modelo, String color, int precio) {
         this.matricula = matricula;
@@ -27,6 +36,18 @@ public class Coche {
         this.color = color;
         this.precio = precio;
     }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public Coche() {
+    }
+    
 
     public String getMatricula() {
         return matricula;
@@ -71,15 +92,17 @@ public class Coche {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
-    
-    
-    
+
     @Override
     public String toString() {
-        return "Coche{" + "matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", precio=" + precio + '}';
+        return "Coche{" + "matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", color=" + color + ", precio=" + precio + ", dni=" + dni + '}';
     }
+    
+    
+    
+    
     
     public void pasarRevisiones(Revision revision) {
         this.revisiones.add(revision);
     }
-}
+}    

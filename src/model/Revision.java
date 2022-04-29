@@ -12,7 +12,7 @@ package model;
 public class Revision {
 
     private int codigo;
-    private String fecha;
+    
     private String matricula;
     private boolean filtro;
     private boolean aceite;
@@ -20,16 +20,16 @@ public class Revision {
 
     public Revision() {
         this.codigo = 0;
-        this.fecha = null;
+       
         this.filtro = false;
         this.aceite = false;
         this.frenos = false;
 
     }
 
-    public Revision(int codigo, String fecha,String matricula, boolean filtro, boolean aceite, boolean frenos) {
+    public Revision(int codigo,String matricula, boolean filtro, boolean aceite, boolean frenos) {
         this.codigo = codigo;
-        this.fecha = fecha;
+        
         this.matricula = matricula;
         this.filtro = filtro;
         this.aceite = aceite;
@@ -40,9 +40,7 @@ public class Revision {
         return codigo;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
+    
 
     public String getMatricula() {
         return matricula;
@@ -65,9 +63,8 @@ public class Revision {
         this.codigo = codigo;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
+   
+    
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
